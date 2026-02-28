@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import generoRoutes from "./modules/genero/genero.routes.js";
-import directorRoutes from "./modules/director/director.routes.js";
-import productoraRoutes from "./modules/productora/productora.routes.js";
-import tipoRoutes from "./modules/tipo/tipo.routes.js";
-import mediaRoutes from "./modules/media/media.routes.js";
+import generoRoutes from "./routes/genero.routes.js";
+import directorRoutes from "./routes/director.routes.js";
+import productoraRoutes from "./routes/productora.routes.js";
+import tipoRoutes from "./routes/tipo.routes.js";
+import mediaRoutes from "./routes/media.routes.js";
 
 import { notFound } from "./middlewares/notFound.middleware.js";
 import { errorHandler } from "./middlewares/error.middleware.js";

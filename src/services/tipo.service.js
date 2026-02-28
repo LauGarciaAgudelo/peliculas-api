@@ -1,4 +1,4 @@
-import { Tipo } from "./tipo.model.js";
+import { Tipo } from "../models/tipo.model.js";
 
 export async function crearTipo(data) {
   return Tipo.create(data);

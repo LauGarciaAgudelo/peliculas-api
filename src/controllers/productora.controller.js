@@ -1,4 +1,4 @@
-import * as productoraService from "./productora.service.js";
+import * as productoraService from "../services/productora.service.js";
 
 function estadoValido(estado) {
   return estado === "ACTIVO" || estado === "INACTIVO";

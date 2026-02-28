@@ -1,6 +1,6 @@
 import { Router } from "express";
-import * as mediaController from "./media.controller.js";
-import { validarObjectId } from "../../middlewares/validarObjectId.middleware.js";
+import * as mediaController from "../controllers/media.controller.js";
+import { validarObjectId } from "../helpers/validarObjectId.js";
 
 const router = Router();
 
