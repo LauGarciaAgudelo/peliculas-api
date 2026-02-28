@@ -1,7 +1,7 @@
 import "dotenv/config";
 import app from "./app.js";
 import { env } from "./config/env.js";
-import { connectDB } from "./config/db.js";
+import { connectDB } from "./db/mongo.js";
 
 async function bootstrap() {
   await connectDB();

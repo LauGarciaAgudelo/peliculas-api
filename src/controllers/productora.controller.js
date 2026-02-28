@@ -1,4 +1,4 @@
-import * as generoService from "./genero.service.js";
+import * as productoraService from "../services/productora.service.js";
 
 function estadoValido(estado) {
   return estado === "ACTIVO" || estado === "INACTIVO";
@@ -6,9 +6,9 @@ function estadoValido(estado) {
 
 export async function crear(req, res, next) {
   try {
-    const { nombre, estado, descripcion } = req.body;
+    const { nombre, estado, slogan, descripcion } = req.body;
 
-    if (!nombre || nombre.trim().length < 2) {
+    if (!nombre || String(nombre).trim().length < 2) {
       return res.status(400).json({
         message: "El nombre es obligatorio y debe tener mínimo 2 caracteres",
       });
@@ -20,17 +20,18 @@ export async function crear(req, res, next) {
       });
     }
 
-    const nuevoGenero = await generoService.crearGenero({
-      nombre: nombre.trim(),
+    const nueva = await productoraService.crearProductora({
+      nombre: String(nombre).trim(),
       estado: estado || "ACTIVO",
-      descripcion: descripcion ? descripcion.trim() : "",
+      slogan: slogan ? String(slogan).trim() : "",
+      descripcion: descripcion ? String(descripcion).trim() : "",
     });
 
-    return res.status(201).json(nuevoGenero);
+    return res.status(201).json(nueva);
   } catch (error) {
     if (error.code === 11000) {
       return res.status(409).json({
-        message: "Ya existe un género con ese nombre",
+        message: "Ya existe una productora con ese nombre",
       });
     }
     next(error);
@@ -47,8 +48,8 @@ export async function listar(req, res, next) {
       });
     }
 
-    const generos = await generoService.listarGeneros({ estado });
-    return res.json(generos);
+    const productoras = await productoraService.listarProductoras({ estado });
+    return res.json(productoras);
   } catch (error) {
     next(error);
   }
@@ -58,12 +59,12 @@ export async function obtenerPorId(req, res, next) {
   try {
     const { id } = req.params;
 
-    const genero = await generoService.obtenerGeneroPorId(id);
-    if (!genero) {
-      return res.status(404).json({ message: "Género no encontrado" });
+    const productora = await productoraService.obtenerProductoraPorId(id);
+    if (!productora) {
+      return res.status(404).json({ message: "Productora no encontrada" });
     }
 
-    return res.json(genero);
+    return res.json(productora);
   } catch (error) {
     next(error);
   }
@@ -72,7 +73,7 @@ export async function obtenerPorId(req, res, next) {
 export async function actualizar(req, res, next) {
   try {
     const { id } = req.params;
-    const { nombre, estado, descripcion } = req.body;
+    const { nombre, estado, slogan, descripcion } = req.body;
 
     if (estado && !estadoValido(estado)) {
       return res.status(400).json({
@@ -81,25 +82,26 @@ export async function actualizar(req, res, next) {
     }
 
     const datosActualizar = {};
-    if (nombre !== undefined) datosActualizar.nombre = nombre.trim();
+    if (nombre !== undefined) datosActualizar.nombre = String(nombre).trim();
     if (estado !== undefined) datosActualizar.estado = estado;
+    if (slogan !== undefined) datosActualizar.slogan = String(slogan).trim();
     if (descripcion !== undefined)
-      datosActualizar.descripcion = descripcion.trim();
+      datosActualizar.descripcion = String(descripcion).trim();
 
-    const actualizado = await generoService.actualizarGenero(
+    const actualizado = await productoraService.actualizarProductora(
       id,
       datosActualizar
     );
 
     if (!actualizado) {
-      return res.status(404).json({ message: "Género no encontrado" });
+      return res.status(404).json({ message: "Productora no encontrada" });
     }
 
     return res.json(actualizado);
   } catch (error) {
     if (error.code === 11000) {
       return res.status(409).json({
-        message: "Ya existe un género con ese nombre",
+        message: "Ya existe una productora con ese nombre",
       });
     }
     next(error);
@@ -110,9 +112,9 @@ export async function eliminar(req, res, next) {
   try {
     const { id } = req.params;
 
-    const eliminado = await generoService.eliminarGenero(id);
-    if (!eliminado) {
-      return res.status(404).json({ message: "Género no encontrado" });
+    const eliminada = await productoraService.eliminarProductora(id);
+    if (!eliminada) {
+      return res.status(404).json({ message: "Productora no encontrada" });
     }
 
     return res.status(204).send();

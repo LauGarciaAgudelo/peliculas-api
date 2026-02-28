@@ -1,4 +1,4 @@
-import { Director } from "./director.model.js";
+import { Director } from "../models/director.model.js";
 
 export async function crearDirector(data) {
   return Director.create(data);
