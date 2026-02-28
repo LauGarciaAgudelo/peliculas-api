@@ -1,4 +1,4 @@
-import * as tipoService from "./tipo.service.js";
+import * as tipoService from "../services/tipo.service.js";
 
 export async function crear(req, res, next) {
   try {

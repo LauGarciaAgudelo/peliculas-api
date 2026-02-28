@@ -1,8 +1,8 @@
-import { Media } from "./media.model.js";
-import { Genero } from "../genero/genero.model.js";
-import { Director } from "../director/director.model.js";
-import { Productora } from "../productora/productora.model.js";
-import { Tipo } from "../tipo/tipo.model.js";
+import { Media } from "../models/media.model.js";
+import { Genero } from "../models/genero.model.js";
+import { Director } from "../models/director.model.js";
+import { Productora } from "../models/productora.model.js";
+import { Tipo } from "../models/tipo.model.js";
 
 async function validarReferencias({ generoId, directorId, productoraId, tipoId }) {
   const genero = await Genero.findById(generoId);

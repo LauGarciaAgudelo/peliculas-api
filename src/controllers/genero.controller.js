@@ -1,4 +1,4 @@
-import * as generoService from "./genero.service.js";
+import * as generoService from "../services/genero.service.js";
 
 function estadoValido(estado) {
   return estado === "ACTIVO" || estado === "INACTIVO";

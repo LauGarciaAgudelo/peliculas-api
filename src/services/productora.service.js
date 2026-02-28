@@ -1,4 +1,4 @@
-import { Productora } from "./productora.model.js";
+import { Productora } from "../models/productora.model.js";
 
 export async function crearProductora(data) {
   return Productora.create(data);

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as productoraController from "./productora.controller.js";
+import * as productoraController from "../controllers/productora.controller.js";
 
 const router = Router();
 

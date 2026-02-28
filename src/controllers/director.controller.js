@@ -1,4 +1,4 @@
-import * as directorService from "./director.service.js";
+import * as directorService from "../services/director.service.js";
 
 function estadoValido(estado) {
   return estado === "ACTIVO" || estado === "INACTIVO";

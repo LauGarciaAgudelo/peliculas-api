@@ -27,26 +27,49 @@ Se implementaron operaciones CRUD (Crear, Consultar, Actualizar y Eliminar) para
 
 ## 📂 Estructura del Proyecto
 src/
-config/
-middlewares/
-modules/
-genero/
-director/
-productora/
-tipo/
-media/
-app.js
-server.js
+├── db/
+│ └── mongo.js
+├── config/
+│ └── env.js
+├── helpers/
+│ └── validarObjectId.js
+├── models/
+│ ├── genero.model.js
+│ ├── director.model.js
+│ ├── productora.model.js
+│ ├── tipo.model.js
+│ └── media.model.js
+├── services/
+│ ├── genero.service.js
+│ ├── director.service.js
+│ ├── productora.service.js
+│ ├── tipo.service.js
+│ └── media.service.js
+├── controllers/
+│ ├── genero.controller.js
+│ ├── director.controller.js
+│ ├── productora.controller.js
+│ ├── tipo.controller.js
+│ └── media.controller.js
+├── routes/
+│ ├── genero.routes.js
+│ ├── director.routes.js
+│ ├── productora.routes.js
+│ ├── tipo.routes.js
+│ └── media.routes.js
+├── middlewares/
+│ ├── error.middleware.js
+│ └── notFound.middleware.js
+├── app.js
+└── server.js
 
 
-Cada módulo está estructurado en:
+Cada módulo sigue una arquitectura organizada en:
 
-- model
-- service
-- controller
-- routes
-
-Esto permite mantener una arquitectura limpia y organizada.
+- **Model** → Define el esquema de la base de datos.
+- **Service** → Contiene la lógica de negocio.
+- **Controller** → Maneja las peticiones HTTP.
+- **Routes** → Define los endpoints REST.
 
 ---
 

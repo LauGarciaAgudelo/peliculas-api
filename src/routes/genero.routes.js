@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as generoController from "./genero.controller.js";
+import * as generoController from "../controllers/genero.controller.js";
 
 const router = Router();
 

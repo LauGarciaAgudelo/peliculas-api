@@ -1,4 +1,4 @@
-import { Genero } from "./genero.model.js";
+import { Genero } from "../models/genero.model.js";
 
 export async function crearGenero(data) {
   return Genero.create(data);

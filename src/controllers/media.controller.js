@@ -1,4 +1,4 @@
-import * as mediaService from "./media.service.js";
+import * as mediaService from "../services/media.service.js";
 
 export async function crear(req, res, next) {
   try {
