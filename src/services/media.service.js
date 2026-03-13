@@ -23,13 +23,57 @@ async function validarReferencias({ generoId, directorId, productoraId, tipoId }
   return { ok: true };
 }
 
+async function generarSerial(tipoId) {
+  const tipo = await Tipo.findById(tipoId);
+
+  if (!tipo) {
+    return { error: true, status: 400, message: "Tipo no existe" };
+  }
+
+  let prefijo = "MED";
+  const nombreTipo = String(tipo.nombre).toLowerCase().trim();
+
+  if (nombreTipo === "película" || nombreTipo === "pelicula") {
+    prefijo = "MOV";
+  } else if (nombreTipo === "serie") {
+    prefijo = "SER";
+  } else if (nombreTipo === "miniserie") {
+    prefijo = "MINS";
+  } else if (nombreTipo === "cortometraje") {
+    prefijo = "CORT";
+  } else if (nombreTipo === "documental") {
+    prefijo = "DOC";
+  } else if (nombreTipo === "animacion") {
+    prefijo = "ANIM";
+  } else if (nombreTipo === "reality") {
+    prefijo = "REAL";
+  } else if (nombreTipo === "especial") {
+    prefijo = "ESP";
+  } 
+
+  const cantidad = await Media.countDocuments({ tipoId });
+  const consecutivo = String(cantidad + 1).padStart(4, "0");
+  const serial = `${prefijo}-${consecutivo}`;
+
+  return { error: false, serial };
+}
+
 export async function crearMedia(data) {
   const validacion = await validarReferencias(data);
   if (!validacion.ok) {
     return { error: true, status: 400, message: validacion.message };
   }
 
-  const media = await Media.create(data);
+  const serialResult = await generarSerial(data.tipoId);
+  if (serialResult.error) {
+    return serialResult;
+  }
+
+  const media = await Media.create({
+    ...data,
+    serial: serialResult.serial,
+  });
+
   return { error: false, media };
 }
 

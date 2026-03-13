@@ -16,9 +16,7 @@ export async function crear(req, res, next) {
     } = req.body;
 
     // Validaciones mínimas para campos obligatorios
-    if (!serial || String(serial).trim().length < 2) {
-      return res.status(400).json({ message: "serial es obligatorio" });
-    }
+    
     if (!titulo || String(titulo).trim().length < 2) {
       return res.status(400).json({ message: "titulo es obligatorio" });
     }
@@ -35,7 +33,7 @@ export async function crear(req, res, next) {
     }
 
     const result = await mediaService.crearMedia({
-      serial: String(serial).trim(),
+      
       titulo: String(titulo).trim(),
       sinopsis: sinopsis ? String(sinopsis).trim() : "",
       url: String(url).trim(),
@@ -88,8 +86,8 @@ export async function actualizar(req, res, next) {
     const { id } = req.params;
 
     const data = {};
+    
     const campos = [
-      "serial",
       "titulo",
       "sinopsis",
       "url",
@@ -105,7 +103,6 @@ export async function actualizar(req, res, next) {
       if (req.body[c] !== undefined) data[c] = req.body[c];
     }
 
-    if (data.serial !== undefined) data.serial = String(data.serial).trim();
     if (data.titulo !== undefined) data.titulo = String(data.titulo).trim();
     if (data.sinopsis !== undefined) data.sinopsis = String(data.sinopsis).trim();
     if (data.url !== undefined) data.url = String(data.url).trim();
