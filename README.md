@@ -76,7 +76,7 @@ Cada módulo sigue una arquitectura organizada en:
 ## ⚙️ Instalación y Ejecución
 
 ### 1️⃣ Clonar el repositorio
-git clone <https://github.com/LauGarciaAgudelo/peliculas-apiURL_DEL_REPOSITORIO>
+git clone <https://github.com/LauGarciaAgudelo/peliculas-api
 cd peliculas-api
 
 
