@@ -6,6 +6,8 @@ import directorRoutes from "./routes/director.routes.js";
 import productoraRoutes from "./routes/productora.routes.js";
 import tipoRoutes from "./routes/tipo.routes.js";
 import mediaRoutes from "./routes/media.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import usuarioRoutes from "./routes/usuario.routes.js";
 
 import { notFound } from "./middlewares/notFound.middleware.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
@@ -25,6 +27,8 @@ app.use("/api/directores", directorRoutes);
 app.use("/api/productoras", productoraRoutes);   
 app.use("/api/tipos", tipoRoutes); 
 app.use("/api/medias", mediaRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/usuarios", usuarioRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
