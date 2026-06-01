@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as tipoController from "../controllers/tipo.controller.js";
+import * as usuarioController from "../controllers/usuario.controller.js";
 import { verificarToken } from "../middlewares/auth.middleware.js";
 import { permitirRoles } from "../middlewares/role.middleware.js";
 
@@ -9,33 +9,14 @@ router.post(
   "/",
   verificarToken,
   permitirRoles("administrador"),
-  tipoController.crear
+  usuarioController.crear
 );
 
 router.get(
   "/",
   verificarToken,
-  tipoController.listar
-);
-
-router.get(
-  "/:id",
-  verificarToken,
-  tipoController.obtenerPorId
-);
-
-router.put(
-  "/:id",
-  verificarToken,
   permitirRoles("administrador"),
-  tipoController.actualizar
-);
-
-router.delete(
-  "/:id",
-  verificarToken,
-  permitirRoles("administrador"),
-  tipoController.eliminar
+  usuarioController.listar
 );
 
 export default router;
